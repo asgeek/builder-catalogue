@@ -56,7 +56,7 @@ export const getMissingPieces = async (req, res) => {
     // Fetch set details from the set by id api
     const setDetails = await fetchSetById(setSummary.id);
 
-    let missingPieces = findMissingPieces(userDetails, setDetails.pieces);
+    let missingPieces = findMissingPieces(userDetails.collection, setDetails.pieces);
 
     res.json(missingPieces);
 }
@@ -87,7 +87,7 @@ export const getCollaborators = async (req, res) => {
     const allUsers = await fetchAllUsers(); 
 
     // Create a list of missing pieces for a given set
-    let missingPieces = findMissingPieces(userDetails, setDetails.pieces);
+    let missingPieces = findMissingPieces(userDetails.collection, setDetails.pieces);
 
     let collaborators = []; 
 
