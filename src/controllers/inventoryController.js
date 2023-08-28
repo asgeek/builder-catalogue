@@ -95,14 +95,12 @@ export const getCollaborators = async (req, res) => {
 
         let usersForPiece = [];
 
-        for (let user of allUsers.Users) {
-                        
-            // No need to check the inventory of the current user
-            if (user.username !== username) {
+        // Fetch user details for all users in parallel
+        let userDetailsList = await Promise.all(allUsers.Users.map(user => fetchUserById(user.id)));
 
-                // Fetch user details to find the inventory of the user
-                let userDetails = await fetchUserById(user.id);
-                
+        for (let userDetails of userDetailsList) {
+            // No need to check the inventory of the current user
+            if (userDetails.username !== username) {
                 // Find the list of users who can collaborate with any given missing piece
                 let userForPiece = findCollaborators(userDetails, missingPiece); 
 
