@@ -8,9 +8,10 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "node src/app.js",
+    "start:prod": "node dist/app.js",
     "build": "babel src --out-dir dist",
-    "test": "jest",
-    "start": "node src/app.js"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
