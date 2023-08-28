@@ -37,8 +37,6 @@ export const fetchSetById = async (setId) => {
  * @returns {Promise<Object>} A promise that resolves to the set summary.
  */
 export const fetchSetByName = async (setName) => {
-
-    console.log(setName);
     const response = await axios.get(`${BASE_URL}/api/set/by-name/${setName}`);
     if (!response.status == '200') {
         throw new Error(`Failed to fetch set with name: ${setName}`);
