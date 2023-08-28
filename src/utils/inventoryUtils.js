@@ -55,8 +55,6 @@ export const findMissingPieces = (userCollection, setPieces) => {
         }
     })
 
-    console.log(missingPieces);
-
     // Return the array of missing pieces
     return missingPieces;
 }

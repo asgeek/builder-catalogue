@@ -3,7 +3,6 @@
 import { fetchUserByUsername, fetchUserById, fetchAllSets, fetchSetById, fetchSetByName, fetchAllUsers } from '../services/api.js';
 import { findMissingPieces, matchInventoryToSets, findCollaborators } from '../utils/inventoryUtils.js';
 
-// Export function using ES6 syntax
 export const getBuildableSets = async (req, res) => {
 
     // Get username from request parameters
@@ -12,6 +11,7 @@ export const getBuildableSets = async (req, res) => {
     // Fetch user inventory using the fetchUserByUsername function from api.js
     const userSummary = await fetchUserByUsername(username);
 
+    // Fetch user details using the fetch user by id api
     const userDetails = await fetchUserById(userSummary.id);
 
     // Fetch all available sets using the fetchAllSets function from api.js
@@ -19,14 +19,14 @@ export const getBuildableSets = async (req, res) => {
 
     let buildableSets = [];
 
-    // For each LEGO set, fetch the required pieces and compare with user's inventory
-    for (let legoSet of allSets.Sets) {
+    // For each set, fetch the required pieces and compare with user's inventory
+    for (let set of allSets.Sets) {
         // Fetch the required pieces for the set using the fetchSetById function from api.js
-        const setDetails = await fetchSetById(legoSet.id);
+        const setDetails = await fetchSetById(set.id);
 
         // Compare the required pieces with the user's inventory        
         if (matchInventoryToSets(userDetails, setDetails)) {
-            buildableSets.push(legoSet);
+            buildableSets.push(set);
         }
     }
 
@@ -37,6 +37,7 @@ export const getBuildableSets = async (req, res) => {
 
 // Find missing peases to build a set
 export const getMissingPieces = async (req, res) => {
+    
     // Get username from the rquest parameters
     const username = req.params.username; 
 
@@ -63,6 +64,7 @@ export const getMissingPieces = async (req, res) => {
 
 // Find collaborators to build a set
 export const getCollaborators = async (req, res) => {
+    
     // Get username from the rquest parameters
     const username = req.params.username; 
 
