@@ -2,6 +2,7 @@
 
 Builder Catalogue is a service that lets users explore their existing collections and assess what sets can be built from the pieces that they already own. It uses a database of building sets and a related service where users can record their inventories of building pieces digitally to track and compare their collections.
 
+> Presentation slides can be found in [**docs**](./docs/) directory.
 
 ## Getting Started
 
